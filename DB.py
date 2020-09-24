@@ -67,6 +67,15 @@ class DBModifer:
         c.execute(sql)
         return c.fetchall()
 
+    def selectAlike(self, table,text):
+        sql = 'SELECT * FROM (%s) ' % table
+        sentence='Where name like "%s" ' % text
+        sql =sql+sentence
+        c = self.cursor
+        c.execute(sql)
+        return c.fetchall()
+
+
     def selectByName(self, table, name):
         sql = "SELECT * FROM (%s) WHERE name=?" % table
         c = self.cursor
@@ -155,6 +164,7 @@ dB = DBModifer(MyConstants.database)
 #dB.dropTable('sales')
 #dB.dropTable('bills')
 #dB.dropTable('expenses')
+dB.table(MyConstants.sql_create_later_table)
 dB.table(MyConstants.sql_create_items_table)
 dB.table(MyConstants.sql_create_users_table)
 dB.table(MyConstants.sql_create_expenses_table)

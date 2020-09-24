@@ -11,7 +11,7 @@ import popups
 class Returns(QMainWindow):
     def __init__(self, parent=None):
         super(QWidget, self).__init__(parent)
-        uic.loadUi('returns.ui', self)
+        uic.loadUi('resources//returns.ui', self)
         # Vars
         self.billID = None
         self.billAmount = None
@@ -21,12 +21,13 @@ class Returns(QMainWindow):
         self.billSale = None
         self.note = None
         #  Signals
+        self.lineEdit_discount.editingFinished.connect(self.discountEdited)
         self.pushButton_search.clicked.connect(self.searchForBill)
         self.tableWidget.cellChanged.connect(self.ChangeValue)
-        self.pushButton_returnAll.clicked.connect(self.delteBill)
+        self.pushButton_returnAll.clicked.connect(self.deleteBill)
         self.pushButton_changeBill.clicked.connect(self.changeBill)
 
-    def delteBill(self):
+    def deleteBill(self):
         if self.billID is not None:
             tempID = self.billID
             dialog = popups.Confirmation(self, 'ان تمسح الفاتورة :')
@@ -52,15 +53,15 @@ class Returns(QMainWindow):
             column = 2
             total = self.calculatePurePrice()
             note = self.note + ' + تم تعديل هذه الفاتورة'
-            newBillAmount=self.billAmount-self.toReturn
+            newBillAmount = self.billAmount - self.toReturn
             newSale = (newBillAmount, total, self.discount, self.toReturn, note, self.billID)
-            DB.dB.updateTo(newSale,MyConstants.updateSales)
+            DB.dB.updateTo(newSale, MyConstants.updateSales)
             for record in self.bill:
                 newQnt = int(self.tableWidget.item(row, column).text())
                 newbill = (newQnt, self.billID, record[0], record[1])
                 DB.dB.updateTo(newbill, MyConstants.updateBills)
                 row += 1
-            popups.showMessage(':)','')
+            popups.showMessage(':)', '')
         else:
             popups.showMessage(":)", 'من فضلك ادخل رقم الفاتورة')
 
@@ -82,6 +83,19 @@ class Returns(QMainWindow):
             except Exception as e:
                 self.refreshTable([])
                 popups.showMessage("رقم الفاتورة", "من فضلك ادخل رقم!! الفاتورة")
+
+    def discountEdited(self):
+        text=self.lineEdit_discount.text()
+        self.discount=self.billSale[0][5]
+        try:
+            newDiscount = float(text)
+            if newDiscount > self.discount:
+                newDiscount = self.billSale[0][5]
+                self.lineEdit_discount.setText(str(self.billSale[0][5]))
+            self.discount=newDiscount
+        except Exception as e:
+            self.lineEdit_discount.setText(str('0'))
+            self.discount=0
 
     def updateVars(self):
         self.toReturn = self.calculateTotal()

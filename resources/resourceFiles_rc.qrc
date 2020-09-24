@@ -1,0 +1,36 @@
+<RCC>
+  <qresource prefix="WhiteScreen">
+    <file>layer-4@3x.png</file>
+    <file>rectangle-2@3x.png</file>
+  </qresource>
+  <qresource prefix="maginfier">
+    <file>Capture.PNG</file>
+  </qresource>
+  <qresource prefix="green rectangle">
+    <file>rectangle-3@3x.png</file>
+  </qresource>
+  <qresource prefix="centralLogo">
+    <file>layer-4@3x.png</file>
+    <file>vector-smart-object@3x.png</file>
+  </qresource>
+  <qresource prefix="left-logo">
+    <file>left-logo@3x.png</file>
+    <file>left-logo.png</file>
+  </qresource>
+  <qresource prefix="backGround">
+    <file>1920X1030.png</file>
+    <file>background.png</file>
+  </qresource>
+  <qresource prefix="copyRights">
+    <file>copyright-2020-cashier-all-rights-reserved@3x.png</file>
+  </qresource>
+  <qresource prefix="bottom logo">
+    <file>layer-7.png</file>
+  </qresource>
+  <qresource prefix="blackLine">
+    <file>rounded-rectangle-1@3x.png</file>
+  </qresource>
+  <qresource prefix="logoName">
+    <file>group-3@3x.png</file>
+  </qresource>
+</RCC>

@@ -1,0 +1,484 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1659</width>
+    <height>877</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="windowTitle">
+   <string>تسجيل الدخول</string>
+  </property>
+  <property name="layoutDirection">
+   <enum>Qt::RightToLeft</enum>
+  </property>
+  <property name="sizeGripEnabled">
+   <bool>false</bool>
+  </property>
+  <property name="modal">
+   <bool>false</bool>
+  </property>
+  <widget class="QLabel" name="labelUserName">
+   <property name="geometry">
+    <rect>
+     <x>460</x>
+     <y>450</y>
+     <width>159</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLabel{
+ width: 159px;
+  height: 26px;
+  object-fit: contain;
+  font-family: Emad-DianaeXtra;
+  font-size: 25px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 0.04;
+  letter-spacing: normal;
+  text-align: right;
+  color: #0f2c2e;
+}</string>
+   </property>
+   <property name="text">
+    <string>اسم المستخدم       </string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit_user">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>38</x>
+     <y>475</y>
+     <width>580</width>
+     <height>73</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Emad-DianaeXtra</family>
+     <pointsize>-1</pointsize>
+     <weight>50</weight>
+     <italic>false</italic>
+     <bold>false</bold>
+     <kerning>true</kerning>
+    </font>
+   </property>
+   <property name="contextMenuPolicy">
+    <enum>Qt::DefaultContextMenu</enum>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLineEdit {
+  width: 580px;
+  height: 73px;
+  object-fit: contain;
+  opacity: 0.8;
+  border-radius: 10px;
+  background-color: #0f2d2f;
+  object-fit: contain;
+  font-family: Emad-DianaeXtra;
+  font-size: 25px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 0.04;
+  letter-spacing: normal;
+  text-align: left;
+ padding: 0 18 px;
+selection-background-color: darkgray;
+  color: #ffffff;
+}</string>
+   </property>
+   <property name="inputMask">
+    <string/>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="frame">
+    <bool>true</bool>
+   </property>
+   <property name="echoMode">
+    <enum>QLineEdit::Normal</enum>
+   </property>
+   <property name="cursorPosition">
+    <number>0</number>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+   </property>
+   <property name="placeholderText">
+    <string extracomment="اسم المستخدم">Username....</string>
+   </property>
+   <property name="cursorMoveStyle">
+    <enum>Qt::VisualMoveStyle</enum>
+   </property>
+   <property name="clearButtonEnabled">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelPassword">
+   <property name="geometry">
+    <rect>
+     <x>491</x>
+     <y>581</y>
+     <width>122</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLabel{
+ width: 159px;
+  height: 26px;
+  object-fit: contain;
+  font-family: Emad-DianaeXtra;
+  font-size: 25px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 0.04;
+  letter-spacing: normal;
+  text-align: right;
+  color: #0f2c2e;
+}</string>
+   </property>
+   <property name="text">
+    <string>كلمة المرور            </string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit_password">
+   <property name="geometry">
+    <rect>
+     <x>38</x>
+     <y>623</y>
+     <width>580</width>
+     <height>73</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLineEdit {
+  width: 580px;
+  height: 73px;
+  object-fit: contain;
+  opacity: 0.8;
+  border-radius: 10px;
+  background-color: #0f2d2f;
+width: 216px;
+  height: 23px;
+  object-fit: contain;
+  font-family: Emad-DianaeXtra;
+  font-size: 25px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 0.04;
+  letter-spacing: normal;
+  padding: 0 18px;
+  text-align: right;
+  color: #ffffff;
+}
+
+</string>
+   </property>
+   <property name="inputMask">
+    <string/>
+   </property>
+   <property name="echoMode">
+    <enum>QLineEdit::Password</enum>
+   </property>
+   <property name="placeholderText">
+    <string>Password...</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_login">
+   <property name="geometry">
+    <rect>
+     <x>190</x>
+     <y>770</y>
+     <width>281</width>
+     <height>73</height>
+    </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+ width: 1445px;
+  height: 25px;
+  object-fit: contain;
+  font-family: Emad-DianaeXtra;
+  font-size: 25px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 0.04;
+  letter-spacing: normal;
+  text-align: center;
+  color: #ffffff;
+    color: #ffffff;
+    background-color: #2ccf13;
+	font
+    border-style: solid;
+    }
+
+QPushButton:pressed {
+    border-style: inset;
+    background: qradialgradient(
+        cx: 0.4, cy: -0.1, fx: 0.4, fy: -0.1,
+        radius: 1.35, stop: 0 #fff, stop: 1 #ddd
+        );
+    }</string>
+   </property>
+   <property name="text">
+    <string>تسجيل الدخول</string>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>18</width>
+     <height>18</height>
+    </size>
+   </property>
+   <property name="default">
+    <bool>false</bool>
+   </property>
+   <property name="flat">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="greenPole">
+   <property name="geometry">
+    <rect>
+     <x>616</x>
+     <y>355</y>
+     <width>6</width>
+     <height>55</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="resourceFiles_rc.qrc">:/green rectangle/rectangle-3@3x.png</pixmap>
+   </property>
+  </widget>
+  <widget class="QLabel" name="LoginLabel">
+   <property name="geometry">
+    <rect>
+     <x>380</x>
+     <y>370</y>
+     <width>221</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Emad-DianaeXtra</family>
+     <pointsize>28</pointsize>
+     <weight>50</weight>
+     <italic>false</italic>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLabel{
+  width: 196px;
+  height: 33px;
+  object-fit: contain;
+  font-family: Emad-DianaeXtra;
+  font: 29.5px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 0.05;
+  letter-spacing: normal;
+  text-align: center;
+  color: #0f2c2e;
+}</string>
+   </property>
+   <property name="text">
+    <string>تسجيل الدخول</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="blackLine">
+   <property name="geometry">
+    <rect>
+     <x>90</x>
+     <y>280</y>
+     <width>453</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="resourceFiles_rc.qrc">:/blackLine/rounded-rectangle-1@3x.png</pixmap>
+   </property>
+  </widget>
+  <widget class="QLabel" name="WhiteScreen">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>-40</y>
+     <width>649</width>
+     <height>1080</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="resourceFiles_rc.qrc">:/WhiteScreen/rectangle-2@3x.png</pixmap>
+   </property>
+  </widget>
+  <widget class="QLabel" name="logo">
+   <property name="geometry">
+    <rect>
+     <x>180</x>
+     <y>110</y>
+     <width>87</width>
+     <height>126</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="resourceFiles_rc.qrc">:/centralLogo/layer-4@3x.png</pixmap>
+   </property>
+  </widget>
+  <widget class="QLabel" name="logoName">
+   <property name="geometry">
+    <rect>
+     <x>290</x>
+     <y>130</y>
+     <width>180</width>
+     <height>81</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="resourceFiles_rc.qrc">:/logoName/group-3@3x.png</pixmap>
+   </property>
+  </widget>
+  <widget class="QLabel" name="centeralLogo">
+   <property name="geometry">
+    <rect>
+     <x>910</x>
+     <y>240</y>
+     <width>469</width>
+     <height>348</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="resourceFiles_rc.qrc">:/centralLogo/vector-smart-object@3x.png</pixmap>
+   </property>
+  </widget>
+  <widget class="QLabel" name="copyRights">
+   <property name="geometry">
+    <rect>
+     <x>1140</x>
+     <y>850</y>
+     <width>511</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="resourceFiles_rc.qrc">:/copyRights/copyright-2020-cashier-all-rights-reserved@3x.png</pixmap>
+   </property>
+  </widget>
+  <widget class="QLabel" name="bottomLogo">
+   <property name="geometry">
+    <rect>
+     <x>1110</x>
+     <y>830</y>
+     <width>26</width>
+     <height>37</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="resourceFiles_rc.qrc">:/bottom logo/layer-7.png</pixmap>
+   </property>
+  </widget>
+  <widget class="QLabel" name="backGround">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>-50</y>
+     <width>1659</width>
+     <height>1150</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="resourceFiles_rc.qrc">:/backGround/background.png</pixmap>
+   </property>
+  </widget>
+  <zorder>backGround</zorder>
+  <zorder>WhiteScreen</zorder>
+  <zorder>labelUserName</zorder>
+  <zorder>lineEdit_user</zorder>
+  <zorder>labelPassword</zorder>
+  <zorder>lineEdit_password</zorder>
+  <zorder>pushButton_login</zorder>
+  <zorder>greenPole</zorder>
+  <zorder>LoginLabel</zorder>
+  <zorder>blackLine</zorder>
+  <zorder>logo</zorder>
+  <zorder>logoName</zorder>
+  <zorder>centeralLogo</zorder>
+  <zorder>copyRights</zorder>
+  <zorder>bottomLogo</zorder>
+ </widget>
+ <resources>
+  <include location="resourceFiles_rc.qrc"/>
+ </resources>
+ <connections/>
+</ui>

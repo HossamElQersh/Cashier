@@ -1,0 +1,1170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1920</width>
+    <height>1010</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="windowTitle">
+   <string>سجل المبيعات</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QTableWidget" name="tableWidget_billdetail">
+    <property name="geometry">
+     <rect>
+      <x>1000</x>
+      <y>200</y>
+      <width>831</width>
+      <height>451</height>
+     </rect>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::RightToLeft</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QTableWidget{
+  background-color:#fffff;
+  object-fit: contain;
+  font-size: 20px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 0.04;
+  letter-spacing: normal;
+  text-align: center;
+ selection-background-color: darkgray;
+  color: black;}</string>
+    </property>
+    <property name="selectionBehavior">
+     <enum>QAbstractItemView::SelectRows</enum>
+    </property>
+    <attribute name="horizontalHeaderDefaultSectionSize">
+     <number>200</number>
+    </attribute>
+    <attribute name="horizontalHeaderStretchLastSection">
+     <bool>true</bool>
+    </attribute>
+    <attribute name="verticalHeaderVisible">
+     <bool>false</bool>
+    </attribute>
+    <column>
+     <property name="text">
+      <string>الاسم</string>
+     </property>
+     <property name="font">
+      <font>
+       <family>Emad-Diana eXtra</family>
+       <pointsize>11</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>السعر</string>
+     </property>
+     <property name="font">
+      <font>
+       <family>Emad-Diana eXtra</family>
+       <pointsize>11</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>سعر الجملة</string>
+     </property>
+     <property name="font">
+      <font>
+       <family>Emad-Diana eXtra</family>
+       <pointsize>12</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>الكمية</string>
+     </property>
+     <property name="font">
+      <font>
+       <family>Emad-Diana eXtra</family>
+       <pointsize>11</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+    </column>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_note">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>920</y>
+      <width>841</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+      <horstretch>1</horstretch>
+      <verstretch>1</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="font">
+     <font>
+      <family>Emad-DianaeXtra</family>
+      <pointsize>-1</pointsize>
+      <weight>50</weight>
+      <italic>false</italic>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLineEdit {
+  object-fit: contain;
+  background-color: #fffff;
+  object-fit: contain;
+  font-family: Emad-DianaeXtra;
+  font-size: 21px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  text-align: left;
+ padding: 0 18 px;
+  color: black;}</string>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
+    <property name="placeholderText">
+     <string>:(</string>
+    </property>
+   </widget>
+   <widget class="QTableWidget" name="tableWidget_expenses">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>200</y>
+      <width>951</width>
+      <height>691</height>
+     </rect>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::RightToLeft</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QTableWidget{
+  background-color:#fffff;
+  object-fit: contain;
+  font-size: 20px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 0.04;
+  letter-spacing: normal;
+  text-align: center;
+ selection-background-color: darkgray;
+  color: black;}</string>
+    </property>
+    <property name="selectionBehavior">
+     <enum>QAbstractItemView::SelectRows</enum>
+    </property>
+    <attribute name="horizontalHeaderDefaultSectionSize">
+     <number>150</number>
+    </attribute>
+    <attribute name="verticalHeaderVisible">
+     <bool>false</bool>
+    </attribute>
+    <column>
+     <property name="text">
+      <string>رقم العملية</string>
+     </property>
+     <property name="font">
+      <font>
+       <family>Emad-Diana eXtra</family>
+       <pointsize>11</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>المستخدم</string>
+     </property>
+     <property name="font">
+      <font>
+       <family>Emad-Diana eXtra</family>
+       <pointsize>11</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>المبلغ</string>
+     </property>
+     <property name="font">
+      <font>
+       <family>Emad-Diana eXtra</family>
+       <pointsize>11</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>اليوم</string>
+     </property>
+     <property name="font">
+      <font>
+       <family>Emad-Diana eXtra</family>
+       <pointsize>11</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>الساعة</string>
+     </property>
+     <property name="font">
+      <font>
+       <family>Emad-Diana eXtra</family>
+       <pointsize>11</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>البيان</string>
+     </property>
+     <property name="font">
+      <font>
+       <family>Emad-Diana eXtra</family>
+       <pointsize>11</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+    </column>
+   </widget>
+   <widget class="QTableWidget" name="tableWidget_bills">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>200</y>
+      <width>951</width>
+      <height>691</height>
+     </rect>
+    </property>
+    <property name="cursor" stdset="0">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="contextMenuPolicy">
+     <enum>Qt::PreventContextMenu</enum>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::RightToLeft</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QTableWidget{
+  background-color:#fffff;
+  object-fit: contain;
+  font-size: 20px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 0.04;
+  letter-spacing: normal;
+  text-align: center;
+ selection-background-color: darkgray;
+  color: black;}</string>
+    </property>
+    <property name="alternatingRowColors">
+     <bool>true</bool>
+    </property>
+    <property name="selectionBehavior">
+     <enum>QAbstractItemView::SelectRows</enum>
+    </property>
+    <property name="cornerButtonEnabled">
+     <bool>false</bool>
+    </property>
+    <property name="columnCount">
+     <number>9</number>
+    </property>
+    <attribute name="horizontalHeaderVisible">
+     <bool>true</bool>
+    </attribute>
+    <attribute name="horizontalHeaderCascadingSectionResizes">
+     <bool>true</bool>
+    </attribute>
+    <attribute name="horizontalHeaderDefaultSectionSize">
+     <number>150</number>
+    </attribute>
+    <attribute name="horizontalHeaderStretchLastSection">
+     <bool>false</bool>
+    </attribute>
+    <attribute name="verticalHeaderVisible">
+     <bool>false</bool>
+    </attribute>
+    <column>
+     <property name="text">
+      <string>رقم العملية</string>
+     </property>
+     <property name="font">
+      <font>
+       <family>Emad-Diana eXtra</family>
+       <pointsize>11</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>البائع</string>
+     </property>
+     <property name="font">
+      <font>
+       <family>Emad-Diana eXtra</family>
+       <pointsize>11</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string> رقم المشترى</string>
+     </property>
+     <property name="font">
+      <font>
+       <family>Emad-Diana eXtra</family>
+       <pointsize>11</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>الاجمالى</string>
+     </property>
+     <property name="font">
+      <font>
+       <family>Emad-Diana eXtra</family>
+       <pointsize>11</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>سعر الجملة</string>
+     </property>
+     <property name="font">
+      <font>
+       <family>Emad-Diana eXtra</family>
+       <pointsize>11</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>الخصم</string>
+     </property>
+     <property name="font">
+      <font>
+       <family>Emad-Diana eXtra</family>
+       <pointsize>11</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>مرتجع</string>
+     </property>
+     <property name="font">
+      <font>
+       <family>Emad-Diana eXtra</family>
+       <pointsize>11</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>التاريخ</string>
+     </property>
+     <property name="font">
+      <font>
+       <family>Emad-Diana eXtra</family>
+       <pointsize>11</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>الساعة</string>
+     </property>
+     <property name="font">
+      <font>
+       <family>Emad-Diana eXtra</family>
+       <pointsize>11</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+    </column>
+   </widget>
+   <widget class="QPushButton" name="pushButton_expenses">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>150</y>
+      <width>251</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"> QPushButton {
+  object-fit: contain;
+  font-family: Emad-DianaeXtra;
+  font-size: 31px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 0.04;
+  letter-spacing: normal;
+  text-align: center;
+  color: #ffffff;
+    background-color: #0f552f;
+	font
+    border-style: solid;
+    }
+
+QPushButton:hover {
+
+    }
+
+QPushButton:pressed {
+ 
+    }</string>
+    </property>
+    <property name="text">
+     <string>المصروفات</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_bills">
+    <property name="geometry">
+     <rect>
+      <x>730</x>
+      <y>150</y>
+      <width>251</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"> QPushButton {
+  object-fit: contain;
+  font-family: Emad-DianaeXtra;
+  font-size: 31px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 0.04;
+  letter-spacing: normal;
+  text-align: center;
+  color: #ffffff;
+    background-color: #0f552f;
+	font
+    border-style: solid;
+    }
+
+QPushButton:hover {
+
+    }
+
+QPushButton:pressed {
+ 
+    }</string>
+    </property>
+    <property name="text">
+     <string>المبيعات</string>
+    </property>
+   </widget>
+   <widget class="QDateEdit" name="dateEdit_from">
+    <property name="geometry">
+     <rect>
+      <x>1560</x>
+      <y>150</y>
+      <width>181</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"> QDateEdit {
+  object-fit: contain;
+
+  font-size: 25px;
+  color: BLACK;
+   background-color: #FFFFF;
+
+    }</string>
+    </property>
+    <property name="dateTime">
+     <datetime>
+      <hour>0</hour>
+      <minute>0</minute>
+      <second>0</second>
+      <year>2020</year>
+      <month>1</month>
+      <day>1</day>
+     </datetime>
+    </property>
+    <property name="displayFormat">
+     <string>yyyy/MM/dd</string>
+    </property>
+    <property name="calendarPopup">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>1740</x>
+      <y>150</y>
+      <width>91</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Emad-Diana eXtra</family>
+      <pointsize>14</pointsize>
+      <weight>50</weight>
+      <italic>false</italic>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{
+ width: 156px;
+  height: 26px;
+  object-fit: contain;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 0.04;
+  letter-spacing: normal;
+  text-align: right;
+  color: #ffffff;}</string>
+    </property>
+    <property name="text">
+     <string>الفترة من</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>1490</x>
+      <y>150</y>
+      <width>51</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="font">
+     <font>
+      <family>Emad-Diana eXtra</family>
+      <pointsize>14</pointsize>
+      <weight>50</weight>
+      <italic>false</italic>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{
+ width: 156px;
+  height: 26px;
+  object-fit: contain;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 0.04;
+  letter-spacing: normal;
+  text-align: right;
+  color: #ffffff;}</string>
+    </property>
+    <property name="text">
+     <string>الى</string>
+    </property>
+   </widget>
+   <widget class="QDateEdit" name="dateEdit_to">
+    <property name="geometry">
+     <rect>
+      <x>1310</x>
+      <y>150</y>
+      <width>181</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"> QDateEdit {
+  object-fit: contain;
+
+  font-size: 25px;
+  color: BLACK;
+   background-color: #FFFFF;
+
+    }
+</string>
+    </property>
+    <property name="dateTime">
+     <datetime>
+      <hour>0</hour>
+      <minute>0</minute>
+      <second>0</second>
+      <year>2000</year>
+      <month>1</month>
+      <day>1</day>
+     </datetime>
+    </property>
+    <property name="displayFormat">
+     <string>yyyy/MM/dd</string>
+    </property>
+    <property name="calendarPopup">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_all">
+    <property name="geometry">
+     <rect>
+      <x>1000</x>
+      <y>150</y>
+      <width>251</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"> QPushButton {
+  object-fit: contain;
+  font-family: Emad-DianaeXtra;
+  font-size: 31px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 0.04;
+  letter-spacing: normal;
+  text-align: center;
+  color: #ffffff;
+    background-color: #0f552f;
+	font
+    border-style: solid;
+    }
+
+QPushButton:hover {
+
+    }
+
+QPushButton:pressed {
+ 
+    }</string>
+    </property>
+    <property name="text">
+     <string>كل الفواتير</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>860</x>
+      <y>920</y>
+      <width>121</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Emad-Diana eXtra</family>
+      <pointsize>14</pointsize>
+      <weight>50</weight>
+      <italic>false</italic>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{
+ width: 156px;
+  height: 26px;
+  object-fit: contain;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 0.04;
+  letter-spacing: normal;
+  text-align: right;
+  color: #ffffff;}</string>
+    </property>
+    <property name="text">
+     <string>ملاحظة</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_7">
+    <property name="geometry">
+     <rect>
+      <x>1370</x>
+      <y>800</y>
+      <width>111</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Emad-Diana eXtra</family>
+      <pointsize>11</pointsize>
+      <weight>50</weight>
+      <italic>false</italic>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{
+ width: 156px;
+  height: 26px;
+  object-fit: contain;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 0.04;
+  letter-spacing: normal;
+  text-align: right;
+  color: #ffffff;}</string>
+    </property>
+    <property name="text">
+     <string>صافى الربح :</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_pureProfit">
+    <property name="geometry">
+     <rect>
+      <x>1200</x>
+      <y>810</y>
+      <width>181</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Emad-Diana eXtra</family>
+      <pointsize>14</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLineEdit {
+  object-fit: contain;
+  background-color: #fffff;
+  text-align: left;
+ padding: 0 18 px;
+  color: black;}</string>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
+    <property name="placeholderText">
+     <string>0.0 EGP</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>1750</x>
+      <y>700</y>
+      <width>91</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Emad-Diana eXtra</family>
+      <pointsize>11</pointsize>
+      <weight>50</weight>
+      <italic>false</italic>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{
+ width: 156px;
+  height: 26px;
+  object-fit: contain;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 0.04;
+  letter-spacing: normal;
+  text-align: right;
+  color: #ffffff;}</string>
+    </property>
+    <property name="text">
+     <string>المبيعات :</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_total">
+    <property name="geometry">
+     <rect>
+      <x>1580</x>
+      <y>700</y>
+      <width>181</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>0</width>
+      <height>50</height>
+     </size>
+    </property>
+    <property name="font">
+     <font>
+      <family>Emad-Diana eXtra</family>
+      <pointsize>14</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::RightToLeft</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLineEdit {
+  object-fit: contain;
+  background-color: #fffff;
+  text-align: left;
+ padding: 0 18 px;
+  color: black;}</string>
+    </property>
+    <property name="frame">
+     <bool>true</bool>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
+    <property name="placeholderText">
+     <string>0.0 EGP</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_6">
+    <property name="geometry">
+     <rect>
+      <x>1380</x>
+      <y>710</y>
+      <width>101</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Emad-Diana eXtra</family>
+      <pointsize>11</pointsize>
+      <weight>50</weight>
+      <italic>false</italic>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{
+ width: 156px;
+  height: 26px;
+  object-fit: contain;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 0.04;
+  letter-spacing: normal;
+  text-align: right;
+  color: #ffffff;}</string>
+    </property>
+    <property name="text">
+     <string>المصروفات :</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_expenses">
+    <property name="geometry">
+     <rect>
+      <x>1200</x>
+      <y>700</y>
+      <width>181</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Emad-Diana eXtra</family>
+      <pointsize>14</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLineEdit {
+  object-fit: contain;
+  background-color: #fffff;
+  text-align: left;
+ padding: 0 18 px;
+  color: black;}</string>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
+    <property name="placeholderText">
+     <string>0.0 EGP</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_5">
+    <property name="geometry">
+     <rect>
+      <x>1720</x>
+      <y>810</y>
+      <width>91</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Emad-Diana eXtra</family>
+      <pointsize>11</pointsize>
+      <weight>50</weight>
+      <italic>false</italic>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{
+ width: 156px;
+  height: 26px;
+  object-fit: contain;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 0.04;
+  letter-spacing: normal;
+  text-align: right;
+  color: #ffffff;}</string>
+    </property>
+    <property name="text">
+     <string>الربح :</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_profit">
+    <property name="geometry">
+     <rect>
+      <x>1580</x>
+      <y>810</y>
+      <width>181</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Emad-Diana eXtra</family>
+      <pointsize>14</pointsize>
+      <weight>75</weight>
+      <italic>false</italic>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLineEdit {
+  object-fit: contain;
+  background-color: #fffff;
+  text-align: left;
+ padding: 0 18 px;
+  color: black;}</string>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
+    <property name="placeholderText">
+     <string>0.0 EGP</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="BackGround">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>1920</width>
+      <height>1030</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/backGround/1920X1030.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_8">
+    <property name="geometry">
+     <rect>
+      <x>1330</x>
+      <y>920</y>
+      <width>31</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/bottom logo/layer-7.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_9">
+    <property name="geometry">
+     <rect>
+      <x>1370</x>
+      <y>940</y>
+      <width>531</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/copyRights/copyright-2020-cashier-all-rights-reserved@3x.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_11">
+    <property name="geometry">
+     <rect>
+      <x>870</x>
+      <y>700</y>
+      <width>321</width>
+      <height>231</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/centralLogo/vector-smart-object@3x.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_10">
+    <property name="geometry">
+     <rect>
+      <x>1830</x>
+      <y>70</y>
+      <width>47</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/green rectangle/rectangle-3@3x.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_12">
+    <property name="geometry">
+     <rect>
+      <x>1530</x>
+      <y>80</y>
+      <width>291</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Emad-Diana eXtra</family>
+      <pointsize>16</pointsize>
+      <weight>50</weight>
+      <italic>false</italic>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{
+ width: 156px;
+  height: 26px;
+  object-fit: contain;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 0.04;
+  letter-spacing: normal;
+  text-align: right;
+  color: #ffffff;}</string>
+    </property>
+    <property name="text">
+     <string>سجل المبيعات والمصروفات</string>
+    </property>
+   </widget>
+   <zorder>BackGround</zorder>
+   <zorder>tableWidget_bills</zorder>
+   <zorder>tableWidget_expenses</zorder>
+   <zorder>tableWidget_billdetail</zorder>
+   <zorder>lineEdit_note</zorder>
+   <zorder>pushButton_expenses</zorder>
+   <zorder>pushButton_bills</zorder>
+   <zorder>dateEdit_from</zorder>
+   <zorder>label_2</zorder>
+   <zorder>label_3</zorder>
+   <zorder>dateEdit_to</zorder>
+   <zorder>pushButton_all</zorder>
+   <zorder>label</zorder>
+   <zorder>label_7</zorder>
+   <zorder>lineEdit_pureProfit</zorder>
+   <zorder>label_4</zorder>
+   <zorder>lineEdit_total</zorder>
+   <zorder>label_6</zorder>
+   <zorder>lineEdit_expenses</zorder>
+   <zorder>label_5</zorder>
+   <zorder>lineEdit_profit</zorder>
+   <zorder>label_8</zorder>
+   <zorder>label_9</zorder>
+   <zorder>label_11</zorder>
+   <zorder>label_10</zorder>
+   <zorder>label_12</zorder>
+  </widget>
+ </widget>
+ <resources>
+  <include location="resourceFiles_rc.qrc"/>
+ </resources>
+ <connections/>
+</ui>

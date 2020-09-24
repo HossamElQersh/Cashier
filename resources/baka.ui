@@ -1,0 +1,583 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1920</width>
+    <height>1027</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="windowTitle">
+   <string>سجل المبيعات</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>180</y>
+      <width>341</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Emad-Diana eXtra</family>
+      <pointsize>14</pointsize>
+      <weight>50</weight>
+      <italic>false</italic>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{
+ width: 156px;
+  height: 26px;
+  object-fit: contain;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 0.04;
+  letter-spacing: normal;
+  text-align: right;
+  color: #ffffff;}</string>
+    </property>
+    <property name="text">
+     <string>تفاصيل الفتورة</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QTableWidget" name="tableWidget">
+    <property name="geometry">
+     <rect>
+      <x>130</x>
+      <y>220</y>
+      <width>691</width>
+      <height>671</height>
+     </rect>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::RightToLeft</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QTableWidget{
+  background-color:#fffff;
+  object-fit: contain;
+  font-size: 20px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 0.04;
+  letter-spacing: normal;
+  text-align: center;
+ selection-background-color: #0f552f;
+  color: black;}</string>
+    </property>
+    <column>
+     <property name="text">
+      <string>الاسم</string>
+     </property>
+     <property name="font">
+      <font>
+       <family>Emad-Diana eXtra</family>
+       <pointsize>12</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>السعر </string>
+     </property>
+     <property name="font">
+      <font>
+       <family>Emad-Diana eXtra</family>
+       <pointsize>12</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>الكمية</string>
+     </property>
+     <property name="font">
+      <font>
+       <family>Emad-Diana eXtra</family>
+       <pointsize>12</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+    </column>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_id">
+    <property name="geometry">
+     <rect>
+      <x>1280</x>
+      <y>240</y>
+      <width>350</width>
+      <height>51</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>1500</x>
+      <y>250</y>
+      <width>231</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="font">
+     <font>
+      <family>Emad-Diana eXtra</family>
+      <pointsize>14</pointsize>
+      <weight>50</weight>
+      <italic>false</italic>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{
+ width: 156px;
+  height: 26px;
+  object-fit: contain;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 0.04;
+  letter-spacing: normal;
+  text-align: right;
+  color: #ffffff;}</string>
+    </property>
+    <property name="text">
+     <string>الكود</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_search">
+    <property name="geometry">
+     <rect>
+      <x>1280</x>
+      <y>310</y>
+      <width>350</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Emad-Diana eXtra</family>
+      <pointsize>14</pointsize>
+      <weight>50</weight>
+      <italic>false</italic>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"> QPushButton {
+  object-fit: contain;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 0.04;
+  letter-spacing: normal;
+  text-align: center;
+  color: #ffffff;
+    background-color: #0f552f;
+	font
+    border-style: solid;
+    }
+
+QPushButton:hover {
+
+    }
+
+QPushButton:pressed {
+ 
+    }</string>
+    </property>
+    <property name="text">
+     <string>بحث</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_changeBill">
+    <property name="geometry">
+     <rect>
+      <x>1280</x>
+      <y>750</y>
+      <width>350</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Emad-Diana eXtra</family>
+      <pointsize>14</pointsize>
+      <weight>50</weight>
+      <italic>false</italic>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"> QPushButton {
+  object-fit: contain;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 0.04;
+  letter-spacing: normal;
+  text-align: center;
+  color: #ffffff;
+    background-color: #0f552f;
+	font
+    border-style: solid;
+    }
+
+QPushButton:hover {
+
+    }
+
+QPushButton:pressed {
+ 
+    }</string>
+    </property>
+    <property name="text">
+     <string>تعديل الفاتورة</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_returnAll">
+    <property name="geometry">
+     <rect>
+      <x>1280</x>
+      <y>830</y>
+      <width>350</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Emad-Diana eXtra</family>
+      <pointsize>14</pointsize>
+      <weight>50</weight>
+      <italic>false</italic>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"> QPushButton {
+  object-fit: contain;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 0.04;
+  letter-spacing: normal;
+  text-align: center;
+  color: #ffffff;
+    background-color: #0f552f;
+	font
+    border-style: solid;
+    }
+
+QPushButton:hover {
+
+    }
+
+QPushButton:pressed {
+ 
+    }</string>
+    </property>
+    <property name="text">
+     <string>مسح الفاتورة</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>1500</x>
+      <y>450</y>
+      <width>231</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="font">
+     <font>
+      <family>Emad-Diana eXtra</family>
+      <pointsize>14</pointsize>
+      <weight>50</weight>
+      <italic>false</italic>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{
+ width: 156px;
+  height: 26px;
+  object-fit: contain;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 0.04;
+  letter-spacing: normal;
+  text-align: right;
+  color: #ffffff;}</string>
+    </property>
+    <property name="text">
+     <string>الاجمالى</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_amount">
+    <property name="geometry">
+     <rect>
+      <x>1280</x>
+      <y>440</y>
+      <width>350</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>1500</x>
+      <y>540</y>
+      <width>231</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="font">
+     <font>
+      <family>Emad-Diana eXtra</family>
+      <pointsize>14</pointsize>
+      <weight>50</weight>
+      <italic>false</italic>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{
+ width: 156px;
+  height: 26px;
+  object-fit: contain;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 0.04;
+  letter-spacing: normal;
+  text-align: right;
+  color: #ffffff;}</string>
+    </property>
+    <property name="text">
+     <string>الخصم</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_discount">
+    <property name="geometry">
+     <rect>
+      <x>1280</x>
+      <y>530</y>
+      <width>350</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="readOnly">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_return">
+    <property name="geometry">
+     <rect>
+      <x>1280</x>
+      <y>630</y>
+      <width>350</width>
+      <height>51</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_5">
+    <property name="geometry">
+     <rect>
+      <x>1500</x>
+      <y>640</y>
+      <width>231</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="font">
+     <font>
+      <family>Emad-Diana eXtra</family>
+      <pointsize>14</pointsize>
+      <weight>50</weight>
+      <italic>false</italic>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{
+ width: 156px;
+  height: 26px;
+  object-fit: contain;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 0.04;
+  letter-spacing: normal;
+  text-align: right;
+  color: #ffffff;}</string>
+    </property>
+    <property name="text">
+     <string>المبلغ</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_6">
+    <property name="geometry">
+     <rect>
+      <x>1590</x>
+      <y>90</y>
+      <width>151</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Emad-Diana eXtra</family>
+      <pointsize>19</pointsize>
+      <weight>50</weight>
+      <italic>false</italic>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{
+ width: 156px;
+  height: 26px;
+  object-fit: contain;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 0.04;
+  letter-spacing: normal;
+  text-align: right;
+  color: #ffffff;}</string>
+    </property>
+    <property name="text">
+     <string>المرتجعات</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_7">
+    <property name="geometry">
+     <rect>
+      <x>1760</x>
+      <y>82</y>
+      <width>47</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/green rectangle/rectangle-3@3x.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_8">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>1920</width>
+      <height>1030</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/backGround/1920X1030.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_9">
+    <property name="geometry">
+     <rect>
+      <x>1406</x>
+      <y>992</y>
+      <width>531</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/copyRights/copyright-2020-cashier-all-rights-reserved@3x.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_10">
+    <property name="geometry">
+     <rect>
+      <x>1360</x>
+      <y>980</y>
+      <width>41</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/bottom logo/layer-7.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+   </widget>
+   <zorder>label_8</zorder>
+   <zorder>label</zorder>
+   <zorder>tableWidget</zorder>
+   <zorder>lineEdit_id</zorder>
+   <zorder>label_2</zorder>
+   <zorder>pushButton_search</zorder>
+   <zorder>pushButton_changeBill</zorder>
+   <zorder>pushButton_returnAll</zorder>
+   <zorder>label_3</zorder>
+   <zorder>lineEdit_amount</zorder>
+   <zorder>label_4</zorder>
+   <zorder>lineEdit_discount</zorder>
+   <zorder>lineEdit_return</zorder>
+   <zorder>label_5</zorder>
+   <zorder>label_6</zorder>
+   <zorder>label_7</zorder>
+   <zorder>label_9</zorder>
+   <zorder>label_10</zorder>
+  </widget>
+ </widget>
+ <resources>
+  <include location="resourceFiles_rc.qrc"/>
+ </resources>
+ <connections/>
+</ui>

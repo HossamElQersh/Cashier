@@ -3,7 +3,7 @@ from PyQt5.uic.properties import QtWidgets
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
-
+import resourceFiles_rc
 import DB
 import MyConstants
 import popups
@@ -29,7 +29,7 @@ def isVaild(word, flag=False, wtype=str):
 class Items(QMainWindow):
     def __init__(self, parent=None):
         super(QWidget, self).__init__(parent)
-        uic.loadUi('items.ui', self)
+        uic.loadUi('resources\\items.ui', self)
         # Vars
         self.itemName = None
         self.itemID = None
@@ -38,6 +38,7 @@ class Items(QMainWindow):
         self.itemPurePrice = None
         self.items = DB.dB.selectAllFrom('items')
         self.refreshTable()
+        #  Signals
         self.pushButton.clicked.connect(self.addClicked)
         self.pushButton_Delete.clicked.connect(self.delClicked)
         self.pushButton_Update.clicked.connect(self.updateClicked)
@@ -47,6 +48,7 @@ class Items(QMainWindow):
         self.lineEdit_Name.textChanged.connect(self.nameTextChanged)
         # self.lineEdit_ID.textChanged.connect(self.idTextChanged)
         self.tableWidget.itemSelectionChanged.connect(self.selectionChanged)
+
 
     def refreshTable(self, items=[]):
         self.tableWidget.clearSelection()
@@ -190,10 +192,14 @@ class Items(QMainWindow):
         else:
             popups.showMessage('خطا','الرجاء اختيار قطعة لضافة المذيد منها')
 
-    def nameTextChanged(self):
-        self.itemName = self.lineEdit_Name.text()
-        result = DB.dB.selectByName('items', self.itemName)
-        self.refreshTable(result)
+    def nameTextChanged(self,text):
+        text = text + '%'
+        items = DB.dB.selectAlike('items', text)
+        if len(items) == 0:
+            items = [('لا يوجد', 'لا يوجد', 'لا يوجد', 'لا يوجد', 'لا يوجد')]
+            self.refreshTable(items)
+        else:
+            self.refreshTable(items)
 
     def selectionChanged(self):
         try:

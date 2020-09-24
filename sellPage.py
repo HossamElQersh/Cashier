@@ -5,15 +5,18 @@ from PyQt5.QtWidgets import *
 import DB
 import MyConstants
 import CommonFunctions
+import resourceFiles_rc
 import popups
 import datetime
 import users
 
 global userName
+
+
 class SellPage(QMainWindow):
     def __init__(self, parent=None):
         super(QWidget, self).__init__(parent)
-        uic.loadUi('sell.ui', self)
+        uic.loadUi('resources\\sell.ui', self)
 
         # Vars
 
@@ -32,16 +35,18 @@ class SellPage(QMainWindow):
         self.tableWidget.setEditTriggers(QTableWidget.NoEditTriggers)
         self.tableWidget_Cart.setEditTriggers(QTableWidget.NoEditTriggers)
 
-        #  Connect To Func
+        #  Signals
         self.tableWidget_Cart.itemSelectionChanged.connect(self.cartSelectionChanged)
+        self.lineEdit_search.textChanged.connect(self.search)
         self.tableWidget.itemSelectionChanged.connect(self.selectionDBChanged)
         self.pushButton_addToCart.clicked.connect(self.AddToCart)
         self.pushButton_deleteFromCart.clicked.connect(self.removeItem)
         self.pushButton_clearCart.clicked.connect(self.clearCart)
-        self.lineEdit_Payed.textChanged.connect(self.changePayed)
-        self.lineEdit_DisCount.textChanged.connect(self.changeDiscount)
+        self.lineEdit_Payed.editingFinished.connect(self.changePayed)
+        self.lineEdit_DisCount.editingFinished.connect(self.changeDiscount)
         self.pushButton_Expenses.clicked.connect(self.addToExpenses)
         self.pushButton_submit.clicked.connect(self.newBill)
+        self.pushButton_later.clicked.connect(self.laterBill)
         self.refreshTable()
 
     def AddToCart(self):
@@ -52,7 +57,7 @@ class SellPage(QMainWindow):
                     self.itemsInCart.append(item)
                     self.refreshCart()
                 elif self.inCart(self.itemSelected):
-                    copyOfItemSlected=self.itemSelected
+                    copyOfItemSlected = self.itemSelected
                     dialog = popups.MoreItems(self, copyOfItemSlected[4])
                     dialog.lineEdit_Ava.setText(str(copyOfItemSlected[4]))  # Total in Store
 
@@ -76,6 +81,16 @@ class SellPage(QMainWindow):
 
         else:
             popups.showMessage('خطأ', 'الرجاء اختيار قطعة لاضافتها للعربة')
+
+    def search(self,text):
+        text=text+'%'
+        items=DB.dB.selectAlike('items',text)
+        if len(items) ==0:
+            items=[('لا يوجد','لا يوجد','لا يوجد','لا يوجد','لا يوجد')]
+            self.refreshTable(items)
+        else:
+            self.refreshTable(items)
+
 
     def removeItem(self):
         self.removeFromCart(self.cartItemID)
@@ -199,7 +214,7 @@ class SellPage(QMainWindow):
             note = self.lineEdit_Expenses.text()
             try:
                 time = str(date.hour) + ':' + str(date.minute) + ':' + str(date.second)
-                user =users.User.returnUserName(users.User)
+                user = users.User.returnUserName(users.User)
                 expense = (user, amount, time, note)
                 DB.dB.insertInto(expense, MyConstants.insertExpenses)
                 popups.showMessage('تم', 'تم تسجيل العملية')
@@ -220,16 +235,42 @@ class SellPage(QMainWindow):
                 note = self.lineEdit_Note.text()
                 phoneNumber = self.lineEdit_PhoneNumber.text()
                 user = users.User.returnUserName(users.User)
-                returns=0
+                returns = 0
                 # (user,phone,total,pureTotal,discount,date,time,note)
-                bill = (user, phoneNumber, self.totalPrice, self.totalPurePrice, self.discount,returns, time, note)
+                bill = (user, phoneNumber, self.totalPrice, self.totalPurePrice, self.discount, returns, time, note)
                 id = DB.dB.insertInto(bill, MyConstants.insertSales)
                 for item in self.itemsInCart:
                     b = DB.dB.selectByID('items', item[0])
                     DB.dB.updateByID('items', (b[0][4] - item[3], b[0][0]))  # b[0][4] is qnt b[0][0] item id
-                    billD = (id, item[1], item[2], b[0][3],item[3])  # [1] bill name, [2] price, [3] qnt , b[0][3] real price
+                    billD = (
+                    id, item[1], item[2], b[0][3], item[3])  # [1] bill name, [2] price, [3] qnt , b[0][3] real price
                     # purePrice
                     DB.dB.insertInto(billD, MyConstants.insertBill)
+                popups.showMessage('تم', 'تم')
+                self.itemsInCart.clear()
+                self.refreshCart()
+                self.refreshTable()
+                self.clearLineEdit()
+                self.clearSelected()
+            else:
+                popups.showMessage('خطأ', 'لا يوجد قطع فى العربة')
+        except Exception as e:
+            print(e)
+
+    def laterBill(self):
+        try:
+            if len(self.itemsInCart):
+                date = datetime.datetime.now()
+                time = str(date.hour) + ':' + str(date.minute) + ':' + str(date.second)
+                note = str(self.totalPrice)+' '+' '+self.lineEdit_Note.text()
+                phoneNumber = self.lineEdit_PhoneNumber.text()
+                user = users.User.returnUserName(users.User)
+                later=(phoneNumber,user,note)
+                DB.dB.insertInto(later,MyConstants.insertLater)
+                for item in self.itemsInCart:
+                    b = DB.dB.selectByID('items', item[0])
+                    DB.dB.updateByID('items', (b[0][4] - item[3], b[0][0]))  # b[0][4] is qnt b[0][0] item id
+
                 popups.showMessage('تم', 'تم')
                 self.itemsInCart.clear()
                 self.refreshCart()

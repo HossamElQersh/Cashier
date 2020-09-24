@@ -1,10 +1,13 @@
 import sys
-from PyQt5 import QtCore, QtNetwork, QtWidgets, uic
+
+import qdarkgraystyle
+from PyQt5 import QtCore, QtNetwork, QtWidgets, uic, Qt
 import MainWindow
 import DB
 import CommonFunctions
 import users
-
+import MyConstants
+import resourceFiles_rc
 global userName
 userName = None
 
@@ -27,11 +30,13 @@ class UniqueApplication(QtWidgets.QApplication):
 
 def showUI(admin):
     if admin == 1:
-        app_window.showMaximized()
+        app_window.show()
+        app_window.setFixedSize(1920,1010)
         app_window.centerWidget.tabs.setCurrentIndex(0)
         app_window.enableTaps()
     else:
-        app_window.showMaximized()
+        app_window.show()
+        app_window.setFixedSize(1920, 1010)
         app_window.centerWidget.tabs.setCurrentIndex(0)
         app_window.disableTaps()
 
@@ -63,11 +68,13 @@ if __name__ == '__main__':
         print('Application already running!')
     else:
         app.startListener()
-        # app.setStyleSheet(qdarkgraystyle.load_stylesheet())
-        login_window = uic.loadUi('login.ui')
+
+        login_window = uic.loadUi('resources\\test.ui')
+        login_window.setWindowFlags(MyConstants.dialogFlags)
         User = login_window.pushButton_login.clicked.connect(login)
         login_window.show()
         app_window = MainWindow.MainWindow()
+        app_window.setWindowFlags(MyConstants.mainWindowFlags)
         app_window.centerWidget.tabs.tabBarClicked.connect(logout)
         app_window.hide()
         sys.exit(app.exec_())

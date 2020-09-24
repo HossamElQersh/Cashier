@@ -7,12 +7,13 @@ import MyConstants
 import CommonFunctions
 import datetime
 import popups
+import resourceFiles_rc
 
 
 class Logs(QMainWindow):
     def __init__(self, parent=None):
         super(QWidget, self).__init__(parent)
-        uic.loadUi('logs.ui', self)
+        uic.loadUi('resources\\logs.ui', self)
         # Vars
         date = datetime.datetime.now()
         self.billID = None

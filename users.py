@@ -15,7 +15,7 @@ userName = None
 class Users(QMainWindow):
     def __init__(self, parent=None):
         super(QWidget, self).__init__(parent)
-        uic.loadUi('users.ui', self)
+        uic.loadUi('resources\\users.ui', self)
         #  VARS   Initialization
         self.addUserName = None
         self.addUserPassword = None

@@ -4,6 +4,8 @@ Created on Sun Jun 21 03:57:14 2020
 
 @author: hoss_
 """
+from PyQt5 import QtCore, QtNetwork, QtWidgets, uic, Qt
+
 dateString='date("now")'
 database = r"dbase.db"
 
@@ -21,6 +23,13 @@ sql_create_users_table = """CREATE TABLE IF NOT EXISTS users (
                                     name text NOT NULL,
                                     password text NOT Null,
                                     admin integer NOT NULL
+                                );"""
+
+sql_create_later_table = """CREATE TABLE IF NOT EXISTS later (
+                                    id integer PRIMARY KEY,
+                                    user text NOT NULL,
+                                    name text NOT NULL,
+                                    information text NOT Null
                                 );"""
 
 sql_create_sales_table = """CREATE TABLE IF NOT EXISTS sales (
@@ -66,11 +75,19 @@ insertExpenses = ''' INSERT INTO expenses(user,total,date,time,note)
               VALUES(?,?,date("now"),?,?); '''
 insertBill=''' INSERT INTO bills(id,item,price,purePrice,qnt)
               VALUES(?,?,?,?,?); '''
+insertLater = ''' INSERT INTO later(name,user,information)
+              VALUES(?,?,?); '''
+
+
+
 updateItem = ''' UPDATE items
               SET name = ? ,
                   price = ? ,
                   realPrice=?,
                   stock = ? 
+              WHERE id = ?'''
+updateLater = ''' UPDATE later
+              SET information = ? 
               WHERE id = ?'''
 refillItem=''' UPDATE items
               SET stock = ? 
@@ -98,6 +115,9 @@ updateSales=''' UPDATE sales
 
 
 #Vars
+dialogFlags=QtCore.Qt.WindowCloseButtonHint| QtCore.Qt.WindowMinimizeButtonHint
+mainWindowFlags=QtCore.Qt.MSWindowsFixedSizeDialogHint
+#|QtCore.Qt.WindowStaysOnTopHint ||QtCore.Qt.MSWindowsFixedSizeDialogHint
 
 chosenColumnsOfSales = ('id', 'user', 'phone', 'total','pureTotal','discount','returns','date', 'time')
 userColumns = ('name', 'password', 'admin')

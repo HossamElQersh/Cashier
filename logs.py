@@ -13,7 +13,7 @@ import resourceFiles_rc
 class Logs(QMainWindow):
     def __init__(self, parent=None):
         super(QWidget, self).__init__(parent)
-        uic.loadUi('resources\\logs.ui', self)
+        uic.loadUi('resources\\newLogs.ui', self)
         # Vars
         date = datetime.datetime.now()
         self.billID = None
@@ -107,7 +107,7 @@ class Logs(QMainWindow):
         self.detailsOfBill = DB.dB.selectSpecificColumnsFromTableByID(('item', 'price', 'purePrice', 'qnt'), 'bills',
                                                                       self.billID)
         self.refreshDetailsOfBillsTable()
-        note = self.bill[9]
+        note = self.bill[10]
         self.lineEdit_note.setText(note)
 
     def timeFilter(self):
@@ -127,6 +127,8 @@ class Logs(QMainWindow):
         self.inCome, self.itemRealPrice = CommonFunctions.calculateIncome(salesData)
         self.cash = self.inCome - self.expenses
         self.pureProfit = self.cash - self.itemRealPrice
+
+        self.lineEdit_realPrice.setText(str(self.itemRealPrice))
         self.lineEdit_pureProfit.setText(str(self.pureProfit))
         self.lineEdit_profit.setText(str(self.cash))
         self.lineEdit_expenses.setText(str(self.expenses))

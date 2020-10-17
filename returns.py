@@ -11,7 +11,7 @@ import popups
 class Returns(QMainWindow):
     def __init__(self, parent=None):
         super(QWidget, self).__init__(parent)
-        uic.loadUi('resources//returns.ui', self)
+        uic.loadUi('resources//newReturns.ui', self)
         # Vars
         self.billID = None
         self.billAmount = None

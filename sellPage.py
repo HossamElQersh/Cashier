@@ -16,7 +16,7 @@ global userName
 class SellPage(QMainWindow):
     def __init__(self, parent=None):
         super(QWidget, self).__init__(parent)
-        uic.loadUi('resources\\sell.ui', self)
+        uic.loadUi('resources\\newSell.ui', self)
 
         # Vars
 
@@ -42,8 +42,8 @@ class SellPage(QMainWindow):
         self.pushButton_addToCart.clicked.connect(self.AddToCart)
         self.pushButton_deleteFromCart.clicked.connect(self.removeItem)
         self.pushButton_clearCart.clicked.connect(self.clearCart)
-        self.lineEdit_Payed.editingFinished.connect(self.changePayed)
-        self.lineEdit_DisCount.editingFinished.connect(self.changeDiscount)
+        self.lineEdit_Payed.textEdited.connect(self.changePayed)
+        self.lineEdit_DisCount.textEdited.connect(self.changeDiscount)
         self.pushButton_Expenses.clicked.connect(self.addToExpenses)
         self.pushButton_submit.clicked.connect(self.newBill)
         self.pushButton_later.clicked.connect(self.laterBill)
@@ -82,15 +82,14 @@ class SellPage(QMainWindow):
         else:
             popups.showMessage('خطأ', 'الرجاء اختيار قطعة لاضافتها للعربة')
 
-    def search(self,text):
-        text=text+'%'
-        items=DB.dB.selectAlike('items',text)
-        if len(items) ==0:
-            items=[('لا يوجد','لا يوجد','لا يوجد','لا يوجد','لا يوجد')]
+    def search(self, text):
+        text = text + '%'
+        items = DB.dB.selectAlike('items', text)
+        if len(items) == 0:
+            items = [('لا يوجد', 'لا يوجد', 'لا يوجد', 'لا يوجد', 'لا يوجد')]
             self.refreshTable(items)
         else:
             self.refreshTable(items)
-
 
     def removeItem(self):
         self.removeFromCart(self.cartItemID)
@@ -182,22 +181,35 @@ class SellPage(QMainWindow):
 
     def changePayed(self):
         try:
-            self.payed = abs(float(self.lineEdit_Payed.text()))
+            self.payed = self.lineEdit_Payed.text()
+            if self.payed =='':
+                self.payed=0
+            else:
+                self.payed = abs(float(self.payed))
             self.remaining()
+
         except Exception as e:
+            self.payed = 0
+            self.remaining()
             self.lineEdit_Payed.clear()
 
     def changeDiscount(self):
         try:
-            self.discount = abs(float(self.lineEdit_DisCount.text()))
+            self.discount=self.lineEdit_DisCount.text()
+            if self.discount =='':
+                self.discount=0
+            else:
+                self.discount = abs(float(self.discount))
             self.calcualeTotal()
         except Exception as e:
             self.lineEdit_DisCount.clear()
+            self.discount = 0
+            self.calcualeTotal()
 
     def remaining(self):
         required = self.totalPrice - self.discount
-        remaining = self.payed - required
-        self.lineEdit_Left.setText(str("{:,.2f} EGP".format(remaining)))
+        self.remainingAmount = self.payed - required
+        self.lineEdit_Left.setText(str("{:,.2f} EGP".format(self.remainingAmount)))
 
     def clearLineEdit(self):
         self.lineEdit_Payed.clear()
@@ -229,55 +241,83 @@ class SellPage(QMainWindow):
 
     def newBill(self):
         try:
-            if len(self.itemsInCart):
-                date = datetime.datetime.now()
-                time = str(date.hour) + ':' + str(date.minute) + ':' + str(date.second)
-                note = self.lineEdit_Note.text()
-                phoneNumber = self.lineEdit_PhoneNumber.text()
-                user = users.User.returnUserName(users.User)
-                returns = 0
-                # (user,phone,total,pureTotal,discount,date,time,note)
-                bill = (user, phoneNumber, self.totalPrice, self.totalPurePrice, self.discount, returns, time, note)
-                id = DB.dB.insertInto(bill, MyConstants.insertSales)
-                for item in self.itemsInCart:
-                    b = DB.dB.selectByID('items', item[0])
-                    DB.dB.updateByID('items', (b[0][4] - item[3], b[0][0]))  # b[0][4] is qnt b[0][0] item id
-                    billD = (
-                    id, item[1], item[2], b[0][3], item[3])  # [1] bill name, [2] price, [3] qnt , b[0][3] real price
-                    # purePrice
-                    DB.dB.insertInto(billD, MyConstants.insertBill)
-                popups.showMessage('تم', 'تم')
-                self.itemsInCart.clear()
-                self.refreshCart()
-                self.refreshTable()
-                self.clearLineEdit()
-                self.clearSelected()
+            if self.remainingAmount >=0:
+                if self.makeTheSubmitation(True):
+                    popups.showMessage('تم التسجيل العملية', 'تم ادخال عملية البيع فى السجلات')
             else:
-                popups.showMessage('خطأ', 'لا يوجد قطع فى العربة')
+                popups.showMessage('خطأ','المبلغ المدخل اقل من المطلوب')
         except Exception as e:
             print(e)
 
     def laterBill(self):
         try:
             if len(self.itemsInCart):
-                date = datetime.datetime.now()
-                time = str(date.hour) + ':' + str(date.minute) + ':' + str(date.second)
-                note = str(self.totalPrice)+' '+' '+self.lineEdit_Note.text()
-                phoneNumber = self.lineEdit_PhoneNumber.text()
-                user = users.User.returnUserName(users.User)
-                later=(phoneNumber,user,note)
-                DB.dB.insertInto(later,MyConstants.insertLater)
-                for item in self.itemsInCart:
-                    b = DB.dB.selectByID('items', item[0])
-                    DB.dB.updateByID('items', (b[0][4] - item[3], b[0][0]))  # b[0][4] is qnt b[0][0] item id
-
-                popups.showMessage('تم', 'تم')
-                self.itemsInCart.clear()
-                self.refreshCart()
-                self.refreshTable()
-                self.clearLineEdit()
-                self.clearSelected()
+                dialog = popups.Later(self,self.totalPrice)
+                dialog.show()
+                res = dialog.exec_()
+                if res == dialog.Accepted:
+                    if dialog.lineEdit_name.text().strip(' ')!='':
+                        date = datetime.datetime.now()
+                        time = str(date.hour) + ':' + str(date.minute) + ':' + str(date.second)
+                        note = self.lineEdit_Note.text()
+                        user = users.User.returnUserName(users.User)
+                        # (user,phone,total,pureTotal,discount,date,time,note)
+                        returns=0
+                        bill = (user, dialog.lineEdit_name.text(), self.totalPrice, self.totalPurePrice, self.discount, returns,
+                                (self.totalPrice-self.discount-dialog.payed), time, note)
+                        later=(user,dialog.lineEdit_name.text(),self.totalPrice,(self.totalPrice-self.discount-dialog.payed))
+                        DB.dB.insertInto(later,MyConstants.insertLater)
+                        id = DB.dB.insertInto(bill, MyConstants.insertSales)
+                        for item in self.itemsInCart:
+                            b = DB.dB.selectByID('items', item[0])
+                            DB.dB.updateItemsByID('items',
+                                                  (b[0][4] - item[3], b[0][0]))  # b[0][4] is qnt b[0][0] item id
+                            billD = (
+                                id, item[1], item[2], b[0][3],
+                                item[3])  # [1] bill name, [2] price, [3] qnt , b[0][3] real price
+                            # purePrice
+                            DB.dB.insertInto(billD, MyConstants.insertBill)
+                        self.itemsInCart.clear()
+                        self.refreshCart()
+                        self.refreshTable()
+                        self.clearLineEdit()
+                        self.clearSelected()
+                    else:
+                        popups.showMessage('ناقص', 'ادخل اسم العميل')
             else:
                 popups.showMessage('خطأ', 'لا يوجد قطع فى العربة')
+
         except Exception as e:
             print(e)
+
+
+
+    def makeTheSubmitation(self,flag=False):
+        if len(self.itemsInCart):
+            date = datetime.datetime.now()
+            time = str(date.hour) + ':' + str(date.minute) + ':' + str(date.second)
+            note = self.lineEdit_Note.text()
+            phoneNumber = self.lineEdit_PhoneNumber.text()
+            user = users.User.returnUserName(users.User)
+            returns = 0
+            if flag==True:
+                self.remainingAmount=0.0
+            # (user,phone,total,pureTotal,discount,date,time,note)
+            bill = (user, phoneNumber, self.totalPrice, self.totalPurePrice, self.discount, returns,self.remainingAmount,time, note)
+            id = DB.dB.insertInto(bill, MyConstants.insertSales)
+            for item in self.itemsInCart:
+                b = DB.dB.selectByID('items', item[0])
+                DB.dB.updateItemsByID('items', (b[0][4] - item[3], b[0][0]))  # b[0][4] is qnt b[0][0] item id
+                billD = (
+                    id, item[1], item[2], b[0][3], item[3])  # [1] bill name, [2] price, [3] qnt , b[0][3] real price
+                # purePrice
+                DB.dB.insertInto(billD, MyConstants.insertBill)
+            self.itemsInCart.clear()
+            self.refreshCart()
+            self.refreshTable()
+            self.clearLineEdit()
+            self.clearSelected()
+            return True
+        else:
+            popups.showMessage('خطأ', 'لا يوجد قطع فى العربة')
+            return False

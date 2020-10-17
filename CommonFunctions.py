@@ -41,7 +41,7 @@ def calculateIncome(salesDate=[]):
     for item in salesDate:
         reuslt = DB.dB.selectByID('sales', item[0])
         reuslt = reuslt[0]
-        totalIncome += reuslt[3]-reuslt[5]
+        totalIncome += reuslt[3]-reuslt[5]-reuslt[7]
         pureTotal += reuslt[4]
     return totalIncome, pureTotal
 

@@ -111,12 +111,23 @@ class DBModifer:
         c.execute(sql)
         self.conn.commit()
 
-    def updateByID(self, table, item):
+    def updateItemsByID(self, table, item):
         c = self.cursor
         sql = 'Update %s set stock=? where id=?' % table
         c.execute(sql, item)
         self.conn.commit()
-
+    def updateSalesByID(self,table,item):
+        c = self.cursor
+        sql = 'Update %s set user=?,phone=?,total=?,later=? where id=?' % table
+        c.execute(sql, item)
+        self.conn.commit()
+    def resetLaterForSales(self,item):
+        c = self.cursor
+        sql = 'Update sales set later=? where id=?'
+        sql2='Update later set remaining=? where id=?'
+        c.execute(sql, item)
+        c.execute(sql2,item)
+        self.conn.commit()
     def dropTable(self, table):
         c = self.cursor
         sql = 'drop table if EXISTS %s ' % table
@@ -163,6 +174,7 @@ class DBModifer:
 dB = DBModifer(MyConstants.database)
 #dB.dropTable('sales')
 #dB.dropTable('bills')
+#dB.dropTable('later')
 #dB.dropTable('expenses')
 dB.table(MyConstants.sql_create_later_table)
 dB.table(MyConstants.sql_create_items_table)

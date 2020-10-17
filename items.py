@@ -29,13 +29,15 @@ def isVaild(word, flag=False, wtype=str):
 class Items(QMainWindow):
     def __init__(self, parent=None):
         super(QWidget, self).__init__(parent)
-        uic.loadUi('resources\\items.ui', self)
+        uic.loadUi('resources\\newItems.ui', self)
         # Vars
         self.itemName = None
         self.itemID = None
         self.itemPrice = None
         self.itemQuantity = None
         self.itemPurePrice = None
+        self.totalProfit=0
+        self.totalCapital=0
         self.items = DB.dB.selectAllFrom('items')
         self.refreshTable()
         #  Signals
@@ -50,7 +52,7 @@ class Items(QMainWindow):
         self.tableWidget.itemSelectionChanged.connect(self.selectionChanged)
 
 
-    def refreshTable(self, items=[]):
+    def refreshTable(self, items=[],flag=True):
         self.tableWidget.clearSelection()
         self.tableWidget.setRowCount(0);
         if not len(items):
@@ -62,6 +64,9 @@ class Items(QMainWindow):
             for column_number, data in enumerate(item):
                 cell = QTableWidgetItem(str(data))
                 self.tableWidget.setItem(row_number, column_number, cell)
+        if flag:
+            self.calTotalProfit()
+            self.calTotalCapital()
 
     def addClicked(self):
         self.getInput()
@@ -152,7 +157,7 @@ class Items(QMainWindow):
             return new
 
     def clearClicked(self):
-        dialog=popups.Confirmation(self,'ان تمسح كل الباينات :')
+        dialog=popups.Confirmation(self,' هل انت متاكد  من ان تمسح كل الباينات :')
         dialog.show()
         res=dialog.exec_()
         if res==dialog.Accepted:
@@ -197,7 +202,7 @@ class Items(QMainWindow):
         items = DB.dB.selectAlike('items', text)
         if len(items) == 0:
             items = [('لا يوجد', 'لا يوجد', 'لا يوجد', 'لا يوجد', 'لا يوجد')]
-            self.refreshTable(items)
+            self.refreshTable(items,flag=False)
         else:
             self.refreshTable(items)
 
@@ -237,4 +242,15 @@ class Items(QMainWindow):
         self.itemPrice = None
         self.itemName = None
         self.itemQuantity = None
+
+    def calTotalProfit(self):
+        self.totalProfit=0;
+        for item in self.items:
+            self.totalProfit+=float(item[2])*int(item[4])
+        self.lineEdit_totalProfit.setText("{:,.2f} EGP".format(self.totalProfit))
+    def calTotalCapital(self):
+        self.totalCapital=0;
+        for item in self.items:
+            self.totalCapital+=float(item[3])*int(item[4])
+        self.lineEdit_capital.setText("{:,.2f} EGP".format(self.totalCapital))
 

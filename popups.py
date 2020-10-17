@@ -5,14 +5,14 @@ from PyQt5 import uic
 class Confirmation(QDialog):
     def __init__(self, parent, text):
         QDialog.__init__(self, parent)
-        uic.loadUi('confirmation.ui', self)
+        uic.loadUi('resources//confirmation.ui', self)
         self.label_toChange.setText(text)
 
 
 class MoreItems(QDialog):
     def __init__(self, parent, maxValue):
         QDialog.__init__(self, parent)
-        uic.loadUi('quantity.ui', self)
+        uic.loadUi('resources//quantity.ui', self)
         self.maxValue = maxValue
         self.lineEdit_Quantity_2.textChanged.connect(self.textChanged)
         self.horizontalSlider.setMinimum(1)
@@ -39,7 +39,26 @@ class MoreItems(QDialog):
 class Refill(QDialog):
     def __init__(self, parent):
         QDialog.__init__(self, parent)
-        uic.loadUi('refill.ui', self)
+        uic.loadUi('resources//refill.ui', self)
+
+
+class Later(QDialog):
+    def __init__(self, parent,totalPrice):
+        QDialog.__init__(self, parent)
+        uic.loadUi('resources//laterForm.ui', self)
+        self.lineEdit_Payed.editingFinished.connect(self.checkingPayed)
+        self.lineEdit_Amount.setText("{:,.2f} EGP".format(totalPrice))
+        self.name = None
+        self.amount = totalPrice
+        self.payed = 0
+
+    def checkingPayed(self):
+        try:
+            self.payed = self.lineEdit_Payed.text()
+            self.payed = float(self.payed)
+        except:
+            self.payed = 0
+            self.lineEdit_Payed.setText(str(self.payed))
 
 
 def showMessage(title="Error", message="Error"):

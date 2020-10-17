@@ -15,7 +15,7 @@ userName = None
 class Users(QMainWindow):
     def __init__(self, parent=None):
         super(QWidget, self).__init__(parent)
-        uic.loadUi('resources\\users.ui', self)
+        uic.loadUi('resources\\newUsers.ui', self)
         #  VARS   Initialization
         self.addUserName = None
         self.addUserPassword = None
@@ -60,35 +60,39 @@ class Users(QMainWindow):
             self.clearALl(AddUser=False)
 
     def editUser(self):
-        flag = False
-        self.getInput()
-        result = DB.dB.selectByName('users', self.editUserName)
-        defaultUserName = result[0][1]
-        defaultAdmin = result[0][3]
-        self.editUserAdmin = CommonFunctions.updateSelector(str(self.editUserAdmin), str(defaultAdmin))
-        if not CommonFunctions.isEmpty(self.editNewUserName):
-            if not self.isDub():
-                self.editNewUserName = self.editNewUserName
-        else:
-            self.editNewUserName = defaultUserName
-        if not CommonFunctions.isEmpty(self.editUserPassword):
-            if CommonFunctions.validate(self.editUserPassword):
-                if self.editUserPassword == self.editUserPasswordRepeat:
-                    flag = True
+        if self.editUserName is not None:
+            flag = False
+            self.getInput()
+            result = DB.dB.selectByName('users', self.editUserName)
+            defaultUserName = result[0][1]
+            defaultAdmin = result[0][3]
+            print(result)
+            self.editUserAdmin = CommonFunctions.updateSelector(str(self.editUserAdmin), str(defaultAdmin))
+            if not CommonFunctions.isEmpty(self.editNewUserName):
+                if not self.isDub():
+                    self.editNewUserName = self.editNewUserName
+            else:
+                self.editNewUserName = defaultUserName
+            if not CommonFunctions.isEmpty(self.editUserPassword):
+                if CommonFunctions.validate(self.editUserPassword):
+                    if self.editUserPassword == self.editUserPasswordRepeat:
+                        flag = True
+                    else:
+                        popups.showMessage('خطأ', 'كلمة المرور غير متطابقة')
+                        self.clearALl()
+                        return True
                 else:
-                    popups.showMessage('خطأ', 'كلمة المرور غير متطابقة')
-                    self.clearALl()
-                    return True
-        if flag:
-            user = (self.editNewUserName, pbkdf2_sha256.hash(self.editUserPassword), self.editUserAdmin,
-                    int(result[0][0]))
-            DB.dB.updateTo(user, MyConstants.updateUsers)
-        else:
-            user = (self.editNewUserName, self.editUserAdmin, int(result[0][0]))
-            DB.dB.updateTo(user, MyConstants.updateUsersWithoutPasswordChange)
-        popups.showMessage("تم", "تم تعديل المستخدم ")
-        self.clearALl()
-        self.refreshTable()
+                    return
+            if flag:
+                user = (self.editNewUserName, pbkdf2_sha256.hash(self.editUserPassword), self.editUserAdmin,
+                        int(result[0][0]))
+                DB.dB.updateTo(user, MyConstants.updateUsers)
+            else:
+                user = (self.editNewUserName, self.editUserAdmin, int(result[0][0]))
+                DB.dB.updateTo(user, MyConstants.updateUsersWithoutPasswordChange)
+            popups.showMessage("تم", "تم تعديل المستخدم ")
+            self.clearALl()
+            self.refreshTable()
 
     def refreshTable(self):
         self.tableWidget.clearSelection()

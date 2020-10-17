@@ -29,7 +29,8 @@ sql_create_later_table = """CREATE TABLE IF NOT EXISTS later (
                                     id integer PRIMARY KEY,
                                     user text NOT NULL,
                                     name text NOT NULL,
-                                    information text NOT Null
+                                    total float NOT Null,
+                                    remaining float NOT Null
                                 );"""
 
 sql_create_sales_table = """CREATE TABLE IF NOT EXISTS sales (
@@ -40,6 +41,7 @@ sql_create_sales_table = """CREATE TABLE IF NOT EXISTS sales (
                                     pureTotal real,
                                     discount real,
                                     returns real,
+                                    later real,
                                     date text,
                                     time text,
                                     note text 
@@ -69,14 +71,14 @@ insertItems = ''' INSERT INTO items(name,price,realPrice,stock)
 
 insertUsers = ''' INSERT INTO users(name,password,admin)
               VALUES(?,?,?); '''
-insertSales = ''' INSERT INTO sales(user,phone,total,pureTotal,discount,returns,date,time,note)
-              VALUES(?,?,?,?,?,?,date("now"),?,?); '''
+insertSales = ''' INSERT INTO sales(user,phone,total,pureTotal,discount,returns,later,date,time,note)
+              VALUES(?,?,?,?,?,?,?,date("now"),?,?); '''
 insertExpenses = ''' INSERT INTO expenses(user,total,date,time,note)
               VALUES(?,?,date("now"),?,?); '''
 insertBill=''' INSERT INTO bills(id,item,price,purePrice,qnt)
               VALUES(?,?,?,?,?); '''
-insertLater = ''' INSERT INTO later(name,user,information)
-              VALUES(?,?,?); '''
+insertLater = ''' INSERT INTO later(name,user,total,remaining)
+              VALUES(?,?,?,?); '''
 
 
 
@@ -115,11 +117,12 @@ updateSales=''' UPDATE sales
 
 
 #Vars
-dialogFlags=QtCore.Qt.WindowCloseButtonHint| QtCore.Qt.WindowMinimizeButtonHint
-mainWindowFlags=QtCore.Qt.MSWindowsFixedSizeDialogHint
-#|QtCore.Qt.WindowStaysOnTopHint ||QtCore.Qt.MSWindowsFixedSizeDialogHint
+dialogFlags=QtCore.Qt.WindowCloseButtonHint| QtCore.Qt.WindowMinimizeButtonHint|QtCore.Qt.MSWindowsFixedSizeDialogHint
+#mainWindowFlags=QtCore.Qt.MSWindowsFixedSizeDialogHint
+#|QtCore.Qt.WindowStaysOnTopHint |
 
-chosenColumnsOfSales = ('id', 'user', 'phone', 'total','pureTotal','discount','returns','date', 'time')
+chosenColumnsOfSales = ('id', 'user', 'phone', 'total','pureTotal','discount','returns','later','date', 'time')
+chosenColumnsOfLater=('id','user','phone','total','later')
 userColumns = ('name', 'password', 'admin')
 billsColumns=('item', 'price','qnt')
 '''

@@ -18,28 +18,20 @@ import later
 class MainWindow(QMainWindow):
     def __init__(self, parent=None):
         super(QMainWindow, self).__init__(parent)
-        #uic.loadUi('resources\\mainWindow.ui', self)
-        self.title = 'Casher'
+        uic.loadUi('resources\\mainWindow.ui', self)
+        self.title = 'Cashier'
         self.left = 0
         self.top = 0
-        self.width = 1920
-        self.height = 1030
-        #self.setStyleSheet('''
-        #background-image : url(resources//1920X1030.png);
-        #background-repeat: no-repeat;
-        #background-position: center;''')
+        self.width = 1320
+        self.height = 800
         self.setWindowTitle(self.title)
-        #self.label = QtWidgets.QLabel(self.centralwidget)
-        #self.label.setGeometry(QtCore.QRect(0, 0, 1920, 1030))
-        self.setWindowFlags(MyConstants.mainWindowFlags)
         self.setGeometry(self.left, self.top, self.width, self.height)
         self.centerWidget = CenterWidget(self)
         self.setCentralWidget(self.centerWidget)
         self.layout = QVBoxLayout(self)
         self.parent = parent
         self.child = None
-        #self.retranslateUi(MainWindow)
-        # Logout Button
+
 
 
     def disableTaps(self):
@@ -121,7 +113,7 @@ QTabBar::tab:!selected {
         self.later = later.Later()
         self.logout = QWidget()
         # Taps management
-        self.tabs.addTab(self.sell, "")
+        self.tabs.addTab(self.sell, '')
         self.tabs.addTab(self.logs, '')
         self.tabs.addTab(self.returns, '')
         self.tabs.addTab(self.later, '')
@@ -152,3 +144,4 @@ QTabBar::tab:!selected {
         self.Items.refreshTable()
         self.sell.refreshTable()
         self.logs.refreshAll()
+        self.later.refreshTable()

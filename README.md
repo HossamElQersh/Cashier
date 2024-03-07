@@ -14,7 +14,7 @@ This is a desktop application point of sale system for a gift shop.
 - SQLite
 
 ## Installation
-1. Clone the repository: `git clone https://github.com/yourusername/Cashier.git`
+1. Clone the repository: `git clone https://github.com/elqersh/Cashier.git`
 2. Install the required dependencies: `pip install -r requirements.txt`
 3. Run the application: `python main.py`
 
